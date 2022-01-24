@@ -1,0 +1,10 @@
+apps:
+  - path: /
+    title: Participativní­ rozpočet
+    module: http://localhost:8080/index.js
+    templates: ./layouts/pico/
+    layout: page
+    url: https://modurad.otevrenamesta.cz/omstredni/paro/
+
+
+defaultMapCenter: 49.41633392300034,14.66966629028320

@@ -1,0 +1,11 @@
+<div>
+  <ul v-if="data.breadcrumbs">
+    <li><router-link to="/"><i class="fas fa-home"></i></router-link></li>
+    <li v-for="i in data.breadcrumbs" :key="i.link">
+      <router-link :to="i.link">{{ i.title }}</router-link>
+    </li>
+  </ul>
+
+  <component v-for="(i, idx) in data.children" :key="idx"
+    :is="i.component" :data="i" />
+</div>
