@@ -1,0 +1,34 @@
+<div>
+  <table role="grid">
+    <thead>
+      <tr>
+        <th scope="col">Název</th>
+        <th scope="col">Počet</th>
+        <th scope="col">Cena</th>
+        <th><button @click="add">+ přidat položku</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(i, idx) in data[cfg.name]">
+        <td>{{ i.name }} <a v-if="i.link" v-bind:href="i.link" target="_blank">(odkaz)</a></td>
+        <td>{{ i.count }}</td>
+        <td>{{ i.price }}</td>
+        <td>
+          <button variant="secondary" size="sm" @click='edit(idx, i)'>edit</button>
+          <button variant="danger" size="sm" @click='remove(i)'>x odstranit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <dialog :open="item!==null">
+    <article>
+      <header>
+        <a href="#close" aria-label="Close" class="close"></a>
+        updavit položku rozpočtu
+      </header>
+      <DynamicForm :cfg="formcfg" :data="item" :submit="onItemSubmit" />
+    </article>
+  </dialog>
+  <h3>Celkové náklady s DPH: {{ total }}.</h3>
+  
+</div>
