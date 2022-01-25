@@ -3,8 +3,11 @@ apps:
     title: Participativní­ rozpočet
     module: http://localhost:8080/index.js
     templates: ./layouts/pico/
+    # templates: ./layouts/bulma/
     layout: page
     url: https://modurad.otevrenamesta.cz/omstredni/paro/
 
-
+globalComponents:
+  DynamicForm: http://localhost:8080/dynamicForm.js
+  
 defaultMapCenter: 49.41633392300034,14.66966629028320
