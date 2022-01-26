@@ -29,8 +29,8 @@ export default `
   class: is-full
 
 - name: poloha
-  label: poloha ve formatu
-  component: finput
+  label: poloha v mapě
+  component: position_input
   rules: required
 
 - name: photo

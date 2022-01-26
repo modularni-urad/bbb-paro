@@ -1,0 +1,20 @@
+<div>
+  {{ data[cfg.name] }}
+  <button @click="show">upravit</button>
+
+  <dialog :open="shown">
+    <article>
+      <header>
+        <a @click.prevent="onSubmited" aria-label="Close" class="close"></a>
+        posunem markeru vyberte polohu
+      </header>
+      
+      <div id="mapContainer" style="width: 100%; height: 400px;"></div>
+      <footer>
+        <a @click.prevent="shown=false" role="button" class="secondary">Cancel</a>
+        <a @click.prevent="onSubmited" role="button">OK</a>
+      </footer>
+    </article>
+  </dialog>
+
+</div>

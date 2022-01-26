@@ -17,7 +17,7 @@ export async function setup (routes, path, cfg, _create) {
   routes.push({
     path: `${path}zadost`,
     name: 'paroform',
-    component: _create(FormPageFN, zadostCFG, ['form', 'budgeteditor'])
+    component: _create(FormPageFN, zadostCFG, ['form', 'budgeteditor', 'position_input'])
   })
 
   const detailCFG = Object.assign({}, cfg, {

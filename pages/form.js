@@ -1,5 +1,6 @@
 import formcontrol from '../parts/formcontrol.js'
 import budgeteditorFN from '../budget/editor.js'
+import positionInputFN from '../parts/position_input.js'
 
 export default (templates) => ({
   data: function () {
@@ -30,7 +31,10 @@ export default (templates) => ({
       return { form: formcontrol }
     },
     fc: function () {
-      return { budgeteditor: budgeteditorFN(templates) }
+      return { 
+        budgeteditor: budgeteditorFN(templates),
+        position_input: positionInputFN(templates)
+      }
     },
     canEdit: function () {
       return this.curr.status !== 'open' 
