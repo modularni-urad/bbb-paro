@@ -1,8 +1,8 @@
 export default `
 - name: name
-  label: název projektu
+  label: název položky
   component: finput
-  placeholder: dobře ho promyslete, měl by být výstižný
+  placeholder: co je třeba pro projekt
   rules: required
   class: is-full
 
