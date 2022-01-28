@@ -14,7 +14,7 @@
       Počet palečků základní podpory: {{ curr.minimum_support }}
     </p>
     <hr />
-    <div class="columns">
+    <div class="columns is-flex-wrap-wrap">
       <ProjectCard v-for="i,idx in projekty" :key="idx" :proj="i" :call="curr" />
     </div>
   </div>

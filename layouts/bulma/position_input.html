@@ -7,8 +7,8 @@
     <div class="modal-content">
       posunem markeru vyberte polohu
       <div id="mapContainer" style="width: 100%; height: 400px;"></div>
-      <a @click.prevent="shown=false" role="button" class="secondary">Cancel</a>
-      <a @click.prevent="onSubmited" role="button">OK</a>
+      <button @click.prevent="shown=false" class="button secondary">Cancel</button>
+      <button @click.prevent="onSubmited" class="button">OK</button>
     </div>
     <button class="modal-close is-large" aria-label="close" 
       @click.prevent="onSubmited"></button>

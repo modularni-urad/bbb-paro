@@ -3,8 +3,11 @@
     <h1>{{ projekt.name }}</h1>
     <h2>{{ projekt.desc }}</h2>
   </hgroup>
-  <img :src="projekt.photo" />  
+  <img :src="$store.getters.mediaUrl(mainphoto, 'w=800')" />
   
-  <markdown :text="projekt.content" />
+  <p>
+    <markdown :text="projekt.content" />
+  </p>
+  <ProjectStatus :proj="projekt" />
   <LikeButton :call="curr" :proj="projekt" :API="this.$props.data.url" />
 </div>

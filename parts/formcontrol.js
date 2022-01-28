@@ -4,12 +4,18 @@ export default `
   component: finput
   placeholder: dobře ho promyslete, měl by být výstižný
   rules: required
-  class: is-full
+  class: is-half
+
+- name: poloha
+  label: poloha v mapě
+  component: position_input
+  rules: required
+  class: is-half
 
 - name: desc
   label: stručný popis projektu
   component: ftextarea
-  rows: 4
+  rows: 3
   placeholder: stručný popis, který detailně rozvedete dále ...
   rules: required
   class: is-full
@@ -28,13 +34,8 @@ export default `
   rules: required
   class: is-full
 
-- name: poloha
-  label: poloha v mapě
-  component: position_input
-  rules: required
-
 - name: photo
-  label: odkaz na fotografii
-  component: finput
+  label: obrazky
+  component: images_editor
   rules: required
 `

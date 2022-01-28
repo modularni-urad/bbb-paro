@@ -1,6 +1,7 @@
 import formcontrol from '../parts/formcontrol.js'
 import budgeteditorFN from '../budget/editor.js'
 import positionInputFN from '../parts/position_input.js'
+import imagesEditorFN from '../images/editor.js'
 
 export default (templates) => ({
   data: function () {
@@ -19,7 +20,9 @@ export default (templates) => ({
       filter = { author: this.$store.state.user.id }
       const u = `${this.$props.data.url}${this.$data.curr.id}?filter=${JSON.stringify(filter)}`
       const projektyReq = await axios.get(u)
-      this.$data.projekt = projektyReq.data.length > 0 ? projektyReq.data[0] : null
+      this.$data.projekt = projektyReq.data.length > 0 && this.$store.state.user.id
+        ? projektyReq.data[0] 
+        : { budget: [] }
     } catch (err) {
     } finally {
       this.$data.loaded = true
@@ -33,7 +36,8 @@ export default (templates) => ({
     fc: function () {
       return { 
         budgeteditor: budgeteditorFN(templates),
-        position_input: positionInputFN(templates)
+        position_input: positionInputFN(templates),
+        images_editor: imagesEditorFN(templates)
       }
     },
     canEdit: function () {
@@ -44,7 +48,7 @@ export default (templates) => ({
   methods: {
     submit: function (data) {
       data = Object.assign({}, data, { budget: JSON.stringify(data.budget) })
-      if (this.projekt) {
+      if (this.projekt.id) {
         const u = `${this.$props.data.url}${this.$data.curr.id}/${this.projekt.id}`
         return axios.put(u, data)
       } else {

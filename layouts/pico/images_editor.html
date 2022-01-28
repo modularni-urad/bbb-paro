@@ -1,0 +1,13 @@
+<div class="columns">
+  <div class="culumn" v-for="i,idx in items" :key="idx">
+
+    <span v-if="loading[idx] === true">loading</span>
+    <div v-else-if="i">
+      <img :src="i" />
+      <button @click="remove(idx)">odstranit</button>
+    </div>
+    <input v-else :disabled="!canUpload" type="file" 
+      accept=".jpg,.jpeg" @change="onSelect(idx, $event)" />
+
+  </div>  
+</div>

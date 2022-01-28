@@ -30,7 +30,7 @@ export default (templates) => ({
       // Object.assign(this.$data.item, item)
     },
     onItemSubmit: function (item) {
-      const items = this.data[this.cfg.name]
+      const items = this.data[this.cfg.name] || []
       this.$data.currIdx === null
         ? items.push(item)
         : Object.assign(items[this.$data.currIdx], item)
@@ -41,7 +41,7 @@ export default (templates) => ({
   },
   computed: {
     total: function () {
-      return countTotal(this.data[this.cfg.name])
+      return countTotal(this.data[this.cfg.name] || [])
     },
     formcfg: function () {
       return { form: formcontrol }

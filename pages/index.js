@@ -26,7 +26,7 @@ export default (templates) => ({
     }
   },
   components: { 
-    ProjectCard: ProjectCardFN(templates) 
+    ProjectCard: ProjectCardFN(templates)
   },
   template: templates['index']
 })

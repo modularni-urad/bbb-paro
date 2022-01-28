@@ -1,3 +1,5 @@
+import ProjectStatusFN from '../parts/project_status.js'
+
 export default (templates) => ({
   props: ['proj', 'call'],
   computed: {
@@ -9,7 +11,13 @@ export default (templates) => ({
           id: this.proj.id
         }
       }
+    },
+    photo: function () {
+      return (this.proj.photo || '').split(',')[0]
     }
+  },
+  components: {
+    ProjectStatus: ProjectStatusFN(templates)
   },
   template: templates['project_card']
 })

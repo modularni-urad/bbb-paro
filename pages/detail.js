@@ -1,4 +1,5 @@
 import LikeButtonFN from '../parts/likebutton.js'
+import ProjectStatusFN from '../parts/project_status.js'
 
 export default (templates) => ({
   data: function () {
@@ -24,9 +25,15 @@ export default (templates) => ({
       this.$data.loaded = true
     }
   },
+  computed: {
+    mainphoto: function () {
+      return (this.projekt.photo || '').split(',')[0]
+    }
+  },
   props: ['data'],
   components: { 
-    LikeButton: LikeButtonFN(templates) 
+    LikeButton: LikeButtonFN(templates),
+    ProjectStatus: ProjectStatusFN(templates)
   },
   template: templates['detail']
 })

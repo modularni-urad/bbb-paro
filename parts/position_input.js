@@ -10,7 +10,7 @@ export default (templates) => ({
     function _extractVal () {
       const p = this.data[this.cfg.name] 
         ? this.data[this.cfg.name]
-        : this.$store.state.cfg.defaultMapCenter
+        : this.$store.state.site.defaultMapCenter
       const r = /\d+.\d*,\s*\d+.\d*/g
       return p && p.match(r) ? p.split(',') : [49.41812070066643, 14.666748046875002]
     }

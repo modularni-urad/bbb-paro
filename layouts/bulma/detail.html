@@ -1,8 +1,10 @@
 <div v-if="loaded">
-  <h1>{{ projekt.name }}</h1>
-  <h2>{{ projekt.desc }}</h2>
-  <img :src="projekt.photo" />
+  <h1 class="title">{{ projekt.name }}</h1>
+  <h2 class="subtitle">{{ projekt.desc }}</h2>
+  <img :src="$store.getters.mediaUrl(mainphoto, 'w=800')" />
   
   <markdown :text="projekt.content" />
+  <ProjectStatus :proj="projekt" />
   <LikeButton :call="curr" :proj="projekt" :API="this.$props.data.url" />
+
 </div>
