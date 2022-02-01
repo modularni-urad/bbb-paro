@@ -22,21 +22,21 @@ export default (templates) => ({
   },
   computed: {
     items: function () {
-      const d = (this.data[this.cfg.name] || '').split(',')
+      const d = (this.value || '').split(',')
       while (d.length < MAX_COUNT) {
         d.push(null)
       }
       return d
     },
     canUpload: function () {
-      return !_.isUndefined(this.$parent.data.id)
+      return this.$parent.data && !_.isUndefined(this.$parent.data.id)
     }
   },
   methods: {
     remove: function (idx) {
       const items = this.items
       items[idx] = ''
-      this.data[this.cfg.name] = items.join(',')
+      this.$emit('input', this.cfg.name, items.join(','))
     },
     onSelect: async function (idx, evt) {
       const content = await loadAsBase64(evt.target.files[0])
@@ -47,10 +47,10 @@ export default (templates) => ({
       await this.$root.request('post', url, { data: { content }})
       const items = this.items
       items[idx]=filename
-      this.data[this.cfg.name] = items.join(',')
+      this.$emit('input', this.cfg.name, items.join(','))
       this.loading[idx] = false
     }
   },
-  props: [ 'data', 'cfg' ],
+  props: ['cfg', 'value'],
   template: templates['images_editor']
 })

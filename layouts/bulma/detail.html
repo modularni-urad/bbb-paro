@@ -1,4 +1,4 @@
-<div v-if="loaded">
+<div v-if="loaded" class="content">
   <h1 class="title">{{ projekt.name }}</h1>
   <h2 class="subtitle">{{ projekt.desc }}</h2>
   <img :src="$store.getters.mediaUrl(mainphoto, 'w=800')" />

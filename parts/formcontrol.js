@@ -1,38 +1,35 @@
 export default `
 - name: name
   label: název projektu
-  component: finput
+  component: input
   placeholder: dobře ho promyslete, měl by být výstižný
   rules: required
-  class: is-half
+  span: 2
 
 - name: poloha
   label: poloha v mapě
   component: position_input
   rules: required
-  class: is-half
+  span: 2
 
 - name: desc
   label: stručný popis projektu
-  component: ftextarea
+  component: textarea
   rows: 3
-  placeholder: stručný popis, který detailně rozvedete dále ...
+  placeholder: stručný popis, který jasně popíše co je vaším cílem ...
   rules: required
-  class: is-full
 
 - name: content
-  label: úplný popis projektu, rozvedení stručného popisu do podrobnějších detailů
-  component: ftextarea
+  label: úplný popis projektu
+  component: textarea
   rows: 8
-  placeholder: tak do toho ... ;)
+  placeholder: rozveďte stručný popis do podrobnějších detailů (můžete použít markdown)
   rules: required
-  class: is-full
   
 - name: budget
   label: rozpočet projektu, opřený o nějakou referenci (eshop, konzultace se řemeslníkem)
   component: budgeteditor
   rules: required
-  class: is-full
 
 - name: photo
   label: obrazky

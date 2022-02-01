@@ -1,4 +1,4 @@
-<div class="columns">
+<div v-if="$parent.data" class="columns">
   <div class="culumn" v-for="i,idx in items" :key="idx">
 
     <span v-if="loading[idx] === true">loading</span>
@@ -11,3 +11,4 @@
 
   </div>  
 </div>
+<div v-else class="notification">obrázky jde nahrát až po uložení</div>

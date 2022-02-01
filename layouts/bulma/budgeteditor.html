@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(i, idx) in data[cfg.name]">
+      <tr v-for="(i, idx) in value">
         <td>{{ i.name }} <a v-if="i.link" v-bind:href="i.link" target="_blank">(odkaz)</a></td>
         <td>{{ i.count }}</td>
         <td>{{ i.price }}</td>

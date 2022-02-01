@@ -15,10 +15,10 @@ export default (templates) => ({
   },
   methods: {
     remove: function (item) {
-      const items = this.data[this.cfg.name]
+      const items = _.clone(this.value)
       const idx = _.findIndex(items, i => (i.name === item.name))
       items.splice(idx, 1)
-      // this.$emit('input', JSON.stringify(items))
+      this.$emit('input', this.cfg.name, items)
     },
     add: function () {
       this.$data.currIdx = null
@@ -30,23 +30,22 @@ export default (templates) => ({
       // Object.assign(this.$data.item, item)
     },
     onItemSubmit: function (item) {
-      const items = this.data[this.cfg.name] || []
+      const items = this.value || []
       this.$data.currIdx === null
         ? items.push(item)
         : Object.assign(items[this.$data.currIdx], item)
       this.$data.item = null
-      // this.$props['v-model'] = newVal
-      // this.$emit('input', newVal)
+      this.$emit('input', this.cfg.name, items)
     }
   },
   computed: {
     total: function () {
-      return countTotal(this.data[this.cfg.name] || [])
+      return countTotal(this.value || [])
     },
     formcfg: function () {
-      return { form: formcontrol }
+      return jsyaml.load(formcontrol)
     }
   },
-  props: [ 'data', 'cfg' ], //'v-model'],
+  props: ['cfg', 'value'],
   template: templates['budgeteditor']
 })

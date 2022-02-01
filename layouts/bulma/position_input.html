@@ -1,5 +1,5 @@
 <div>
-  {{ data[cfg.name] }}
+  <input class="input" :value="value" readonly />
   <button class="button" @click="show">upravit</button>
 
   <div class="modal" :class="{'is-active': shown}">

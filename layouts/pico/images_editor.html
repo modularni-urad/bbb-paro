@@ -1,5 +1,7 @@
-<div class="columns">
-  <div class="culumn" v-for="i,idx in items" :key="idx">
+<div v-if="$parent.data.id" 
+  style="display: grid; gap: 10px; grid-template-columns: repeat(5, 1fr);">
+
+  <div v-for="i,idx in items" :key="idx">
 
     <span v-if="loading[idx] === true">loading</span>
     <div v-else-if="i">
@@ -9,5 +11,7 @@
     <input v-else :disabled="!canUpload" type="file" 
       accept=".jpg,.jpeg" @change="onSelect(idx, $event)" />
 
-  </div>  
+  </div>
+
 </div>
+<kbd v-else>obrázky jde nahrát až po uložení</kbd>

@@ -5,12 +5,10 @@ export default (templates) => ({
       position: null
     }
   },
-  props: [ 'data', 'cfg' ],
+  props: ['cfg', 'value'],
   created () {
     function _extractVal () {
-      const p = this.data[this.cfg.name] 
-        ? this.data[this.cfg.name]
-        : this.$store.state.site.defaultMapCenter
+      const p = this.value || this.$store.state.site.defaultMapCenter
       const r = /\d+.\d*,\s*\d+.\d*/g
       return p && p.match(r) ? p.split(',') : [49.41812070066643, 14.666748046875002]
     }
@@ -19,7 +17,7 @@ export default (templates) => ({
   methods: {
     onSubmited () {
       this.shown = false
-      this.data[this.cfg.name] = this.position.join(',')
+      this.$emit('input', this.cfg.name, this.position.join(','))
       // TODO: unload scripts
     },
     show () {

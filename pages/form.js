@@ -17,12 +17,7 @@ export default (templates) => ({
       let currUrl = `${this.$props.data.url}?filter=${JSON.stringify(filter)}`
       const dataReq = await axios.get(currUrl)
       this.$data.curr = dataReq.data.length > 0 ? dataReq.data[0] : null
-      filter = { author: this.$store.state.user.id }
-      const u = `${this.$props.data.url}${this.$data.curr.id}?filter=${JSON.stringify(filter)}`
-      const projektyReq = await axios.get(u)
-      this.$data.projekt = projektyReq.data.length > 0 && this.$store.state.user.id
-        ? projektyReq.data[0] 
-        : { budget: [] }
+      this.$data.projekt = await this.getMyProject() || { budget: [], photo: ',,,' }
     } catch (err) {
     } finally {
       this.$data.loaded = true
@@ -31,7 +26,7 @@ export default (templates) => ({
   props: ['data'],
   computed: {
     formcfg: function () {
-      return { form: formcontrol }
+      return jsyaml.load(formcontrol)
     },
     fc: function () {
       return { 
@@ -54,6 +49,14 @@ export default (templates) => ({
       } else {
         return axios.post(`${this.$props.data.url}${this.$data.curr.id}`, data)
       }
+    },
+    getMyProject: function () {
+      if (!this.$store.state.user) return null
+      const filter = { author: this.$store.state.user.id }
+      const u = `${this.$props.data.url}${this.$data.curr.id}?filter=${JSON.stringify(filter)}`
+      return axios.get(u).then(res => {
+        return res.data.length > 0 ? res.data[0] : null
+      }).catch(err => null)
     }
   },
   template: templates['form']

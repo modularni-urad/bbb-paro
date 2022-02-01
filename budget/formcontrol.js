@@ -1,31 +1,27 @@
 export default `
 - name: name
   label: název položky
-  component: finput
+  component: input
   placeholder: co je třeba pro projekt
   rules: required
-  class: is-full
 
 - name: count
   label: počet jednotek
-  component: finput
+  component: input
   type: number
   placeholder: kolik toho bude potřeba ...
   rules: required
-  class: is-half
 
 - name: price
   label: cena za jednotku
-  component: finput
+  component: input
   type: number
   placeholder: kolik to stojí ...
   rules: required
-  class: is-half
 
 - name: link
   label: odkaz
-  component: finput
+  component: input
   type: number
-  class: is-full
   placeholder: odkaz na eshop ...
 `
