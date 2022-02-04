@@ -5,7 +5,7 @@
 
     <span v-if="loading[idx] === true">loading</span>
     <div v-else-if="i">
-      <img :src="i" />
+      <img :src="$store.getters.mediaUrl(i, 'w=300')" />
       <button @click="remove(idx)">odstranit</button>
     </div>
     <input v-else :disabled="!canUpload" type="file" 

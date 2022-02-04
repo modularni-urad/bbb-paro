@@ -5,7 +5,8 @@
   <div v-else-if="this.$store.getters.userLogged">
     <DynamicForm :cfg="formcfg" :data="projekt" :submit="submit"
       :extracomponents="fc" />
-    <a role="button" class="secondary" href="..">storno</a>
+    <router-link class="button" 
+      :to="{name: 'paroindex'}">storno</router-link>
   </div>
   <kbd v-else>
     pracovat s projektovým návrhem může pouze přihlášený uživatel

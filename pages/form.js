@@ -45,9 +45,10 @@ export default (templates) => ({
       data = Object.assign({}, data, { budget: JSON.stringify(data.budget) })
       if (this.projekt.id) {
         const u = `${this.$props.data.url}${this.$data.curr.id}/${this.projekt.id}`
-        return axios.put(u, data)
+        return axios.put(u, data).then(res => res.data[0])
       } else {
         return axios.post(`${this.$props.data.url}${this.$data.curr.id}`, data)
+          .then(res => res.data[0])
       }
     },
     getMyProject: function () {

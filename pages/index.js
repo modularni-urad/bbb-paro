@@ -17,7 +17,9 @@ export default (templates) => ({
       let currUrl = `${this.$props.data.url}?filter=${JSON.stringify(filter)}`
       const dataReq = await axios.get(currUrl)
       this.$data.curr = dataReq.data.length > 0 ? dataReq.data[0] : null
-      const projektyReq = await axios.get(`${this.$props.data.url}/${this.$data.curr.id}`)
+      const ProjFilter = { not: { state: 'draft' } }
+      const u = `${this.$props.data.url}/${this.$data.curr.id}?filter=${JSON.stringify(ProjFilter)}`
+      const projektyReq = await axios.get(u)
       this.$data.projekty = projektyReq.data
     } catch (err) {
       alert(err)

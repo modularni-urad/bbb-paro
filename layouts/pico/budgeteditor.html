@@ -2,10 +2,12 @@
   <table role="grid">
     <thead>
       <tr>
-        <th scope="col">Název</th>
-        <th scope="col">Počet</th>
-        <th scope="col">Cena</th>
-        <th><button @click="add">+ přidat položku</button></th>
+        <th scope="col">název</th>
+        <th scope="col">počet</th>
+        <th scope="col">cena za jednotku</th>
+        <th><a @click.prevent="add" href="void 0" role="button">
+          přidat položku <i class="far fa-plus-square"></i>
+        </a></th>
       </tr>
     </thead>
     <tbody>
@@ -14,8 +16,12 @@
         <td>{{ i.count }}</td>
         <td>{{ i.price }}</td>
         <td>
-          <button variant="secondary" size="sm" @click='edit(idx, i)'>edit</button>
-          <button variant="danger" size="sm" @click='remove(i)'>x odstranit</button>
+          <a @click.prevent="edit(idx, i)" href="void 0" role="button" class="secondary">
+            edit <i class="fas fa-edit"></i>
+          </a>
+          <a @click.prevent="remove(i)" href="void 0" role="button" class="contrast">
+            odstranit <i class="fas fa-trash-alt"></i>
+          </a>
         </td>
       </tr>
     </tbody>

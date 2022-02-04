@@ -1,11 +1,16 @@
+function stateText (state) {
+  switch (state) {
+    case 'draft': return 'nepublikovaný koncept'
+    case 'new': return 'sbírá základní podporu'
+    case 'supprtd': return 'získal dostatečnou základní podporu'
+    default: 'neznámý' 
+  }
+}
 
 export default (templates) => ({
   computed: {
     content: function () {
-      switch (this.$props.proj.state) {
-        case 'supprtd': return 'Projekt získal dostatečnou základní podporu'
-        default: return 'Projekt sbírá základní podporu'
-      }
+      return `stav: ${stateText(this.$props.proj.state)}`
     }
   },
   methods: {
