@@ -43,13 +43,22 @@ export default (templates) => ({
   methods: {
     submit: function (data) {
       data = Object.assign({}, data, { budget: JSON.stringify(data.budget) })
+      let p = null
       if (this.projekt.id) {
         const u = `${this.$props.data.url}${this.$data.curr.id}/${this.projekt.id}`
-        return axios.put(u, data).then(res => res.data[0])
+        p = this.$root.request('put', u, { data })
       } else {
-        return axios.post(`${this.$props.data.url}${this.$data.curr.id}`, data)
-          .then(res => res.data[0])
+        const u = `${this.$props.data.url}${this.$data.curr.id}`
+        p = this.$root.request('post', u, { data })
       }
+      return p.then(res => {
+        alert('uloženo')
+        return res[0]
+      })
+    },
+    publish: function () {
+      const u = `${this.$props.data.url}${this.$data.curr.id}/${this.projekt.id}/publish`
+      return this.$root.request('put', u).then(res => this.projekt.state = 'new')
     },
     getMyProject: function () {
       if (!this.$store.state.user) return null

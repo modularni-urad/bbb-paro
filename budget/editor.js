@@ -29,8 +29,11 @@ export default (templates) => ({
       this.$data.item = item
       // Object.assign(this.$data.item, item)
     },
+    close: function () {
+      this.$data.item = null
+    },
     onItemSubmit: function (item) {
-      const items = this.value || []
+      const items = _.clone(this.value) || []
       this.$data.currIdx === null
         ? items.push(item)
         : Object.assign(items[this.$data.currIdx], item)

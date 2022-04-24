@@ -10,18 +10,18 @@ export default (templates) => ({
   methods: {
     fetchData: async function () {
       if (this.$store.state.user) {
-        const res = await axios.get(`${this.API}${this.call.id}/${this.proj.id}/support`)
-        this.$data.support = res && res.data.length > 0
+        const res = await this.$root.request('get', `${this.API}${this.call.id}/${this.proj.id}/support`)
+        this.$data.support = res && res.length > 0
       }
     },
     sendSupport: async function () {
-      if (this.$data.support) {
-        await axios.delete(`${this.API}${this.call.id}/${this.proj.id}/support`)
-        this.$data.support = false
+      if (this.support) {
+        await this.$root.request('delete', `${this.API}${this.call.id}/${this.proj.id}/support`)
+        this.support = false
       } else {
-        const res = await axios.post(`${this.API}${this.call.id}/${this.proj.id}/support`)
-        this.$data.support = true
-        this.$props.project.state = res.data
+        const res = await this.$root.request('post', `${this.API}${this.call.id}/${this.proj.id}/support`)
+        this.support = true
+        this.$props.proj.state = res
       }
     }
   },

@@ -16,7 +16,7 @@
         <td>{{ i.count }}</td>
         <td>{{ i.price }}</td>
         <td>
-          <a @click.prevent="edit(idx, i)" href="void 0" role="button" class="secondary">
+          <a @click.prevent="edit(idx, i)" href="#" role="button" class="secondary">
             edit <i class="fas fa-edit"></i>
           </a>
           <a @click.prevent="remove(i)" href="void 0" role="button" class="contrast">
@@ -29,7 +29,7 @@
   <dialog :open="item!==null">
     <article>
       <header>
-        <a href="#close" aria-label="Close" class="close"></a>
+        <a href="#" aria-label="close" class="close" @click.prevent="close()"></a>
         updavit položku rozpočtu
       </header>
       <DynamicForm :cfg="formcfg" :data="item" :submit="onItemSubmit" />

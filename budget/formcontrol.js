@@ -22,6 +22,5 @@ export default `
 - name: link
   label: odkaz
   component: input
-  type: number
   placeholder: odkaz na eshop ...
 `

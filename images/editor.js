@@ -1,18 +1,5 @@
+import uploadFile from './uploader.js'
 const MAX_COUNT = 5
-
-function loadAsBase64(theFile) {
-  return new Promise((resolve, reject) => {
-    var reader = new FileReader()
-
-    reader.onload = function(loadedEvent) {
-        var arrayBuffer =  new Uint8Array(loadedEvent.target.result)
-        const r = arrayBuffer.reduce((data, byte) => data + String.fromCharCode(byte), '') 
-        resolve(btoa(r))
-    }
-
-    reader.readAsArrayBuffer(theFile)
-  })
-}
 
 export default (templates) => ({
   data: function () {
@@ -39,16 +26,17 @@ export default (templates) => ({
       this.$emit('input', this.cfg.name, items.join(','))
     },
     onSelect: async function (idx, evt) {
-      const content = await loadAsBase64(evt.target.files[0])
       this.loading[idx] = true
-      const proj = this.$parent.data
-      const filename = `paro/${proj.call_id}/${proj.id}/${idx}.jpg`
-      const url = `${this.$store.state.site.api}/mediaman/upload/${filename}`
-      await this.$root.request('post', url, { data: { content }})
-      const items = this.items
-      items[idx]=filename
-      this.$emit('input', this.cfg.name, items.join(','))
-      this.loading[idx] = false
+      try {
+        const filename = await uploadFile(evt.target.files[0], idx, this.cfg, this)
+        const items = this.items
+        items[idx]=filename
+        this.$emit('input', this.cfg.name, items.join(','))
+      } catch (err) {
+        alert(err)
+      } finally {
+        this.loading[idx] = false
+      }    
     }
   },
   props: ['cfg', 'value'],

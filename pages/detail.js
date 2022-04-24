@@ -1,6 +1,8 @@
 import LikeButtonFN from '../parts/likebutton.js'
 import ProjectStatusFN from '../parts/project_status.js'
 
+const DEFAULT = 'https://www.freeiconspng.com/uploads/no-image-icon-13.png'
+
 export default (templates) => ({
   data: function () {
     return {
@@ -25,9 +27,10 @@ export default (templates) => ({
       this.$data.loaded = true
     }
   },
-  computed: {
-    mainphoto: function () {
-      return (this.projekt.photo || '').split(',')[0]
+  methods: {
+    photo: function (idx) {
+      const arr = (this.projekt.photo || '').split(',')
+      return arr.length >= idx && arr[idx] ? arr[idx] : DEFAULT
     }
   },
   props: ['data'],
