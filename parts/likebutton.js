@@ -10,16 +10,17 @@ export default (templates) => ({
   methods: {
     fetchData: async function () {
       if (this.$store.state.user) {
-        const res = await this.$root.request('get', `${this.API}${this.call.id}/${this.proj.id}/support`)
+        const res = await this.$root.request('get', 
+          `${this.API}${this.call.id}/${this.proj.id}/support`, { withCredentials: true })
         this.$data.support = res && res.length > 0
       }
     },
     sendSupport: async function () {
       if (this.support) {
-        await this.$root.request('delete', `${this.API}${this.call.id}/${this.proj.id}/support`)
+        await this.$root.request('delete', `${this.API}${this.call.id}/${this.proj.id}/support`, { withCredentials: true })
         this.support = false
       } else {
-        const res = await this.$root.request('post', `${this.API}${this.call.id}/${this.proj.id}/support`)
+        const res = await this.$root.request('post', `${this.API}${this.call.id}/${this.proj.id}/support`, { withCredentials: true })
         this.support = true
         this.$props.proj.state = res
       }

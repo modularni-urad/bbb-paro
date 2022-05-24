@@ -3,7 +3,7 @@ const tus = import('https://cdn.jsdelivr.net/npm/tus-js-client@2.3.1/dist/tus.js
 export default async function uploadFile (fileObject, idx, cfg, self) {
   const proj = self.$parent.data
   const uploadinfo = await self.$root.request('get', 
-    `${self.$store.state.site.api}/paro/${proj.call_id}/uploadinfo`)
+    `${self.$store.state.site.api}/paro/${proj.call_id}/uploadinfo`, { withCredentials: true })
   const filename = `${uploadinfo.path}/${idx}.jpg`
 
   await tus

@@ -15,15 +15,15 @@ export default (templates) => ({
     try {
       const filter = { not: { status: 'closed' } }
       let currUrl = `${this.$props.data.url}?filter=${JSON.stringify(filter)}`
-      const dataReq = await axios.get(currUrl)
-      this.$data.curr = dataReq.data.length > 0 ? dataReq.data[0] : null
+      const data = await this.$root.request('get', currUrl)
+      this.$data.curr = data.length > 0 ? data[0] : null
       const ProjFilter = { 
         call_id: this.$data.curr.id,
         not: { state: 'draft' }
       }
       const u = `${this.$props.data.url}/${this.$data.curr.id}?filter=${JSON.stringify(ProjFilter)}`
-      const projektyReq = await axios.get(u)
-      this.$data.projekty = projektyReq.data
+      const projekty = await this.$root.request('get', u)
+      this.$data.projekty = projekty
     } catch (err) {
       alert(err)
     } finally {

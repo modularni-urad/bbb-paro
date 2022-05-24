@@ -15,8 +15,8 @@ export default (templates) => ({
     try {
       let filter = { not: { status: 'closed' } }
       let currUrl = `${this.$props.data.url}?filter=${JSON.stringify(filter)}`
-      const dataReq = await axios.get(currUrl)
-      this.$data.curr = dataReq.data.length > 0 ? dataReq.data[0] : null
+      const data = await this.$root.request('get', currUrl)
+      this.$data.curr = data.length > 0 ? data[0] : null
       this.$data.projekt = await this.getMyProject() || { budget: [], photo: ',,,' }
     } catch (err) {
     } finally {
@@ -46,10 +46,10 @@ export default (templates) => ({
       let p = null
       if (this.projekt.id) {
         const u = `${this.$props.data.url}${this.$data.curr.id}/${this.projekt.id}`
-        p = this.$root.request('put', u, { data })
+        p = this.$root.request('put', u, { data, withCredentials: true })
       } else {
         const u = `${this.$props.data.url}${this.$data.curr.id}`
-        p = this.$root.request('post', u, { data })
+        p = this.$root.request('post', u, { data, withCredentials: true })
       }
       return p.then(res => {
         alert('uloženo')
@@ -58,14 +58,15 @@ export default (templates) => ({
     },
     publish: function () {
       const u = `${this.$props.data.url}${this.$data.curr.id}/${this.projekt.id}/publish`
-      return this.$root.request('put', u).then(res => this.projekt.state = 'new')
+      return this.$root.request('put', u, { withCredentials: true })
+        .then(res => this.projekt.state = 'new')
     },
     getMyProject: function () {
       if (!this.$store.state.user) return null
       const filter = { author: this.$store.state.user.id }
       const u = `${this.$props.data.url}${this.$data.curr.id}?filter=${JSON.stringify(filter)}`
-      return axios.get(u).then(res => {
-        return res.data.length > 0 ? res.data[0] : null
+      return this.$root.request('get', u).then(res => {
+        return res.length > 0 ? res[0] : null
       }).catch(err => null)
     }
   },

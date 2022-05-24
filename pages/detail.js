@@ -15,16 +15,23 @@ export default (templates) => ({
     try {
       const callid = this.$router.currentRoute.params.call_id
       let currUrl = `${this.$props.data.url}?filter={"id":"${callid}"}`
-      const dataReq = await axios.get(currUrl)
-      this.$data.curr = dataReq.data.length > 0 ? dataReq.data[0] : null
+      const calls = await this.$root.request('get', currUrl)
+      this.$data.curr = calls.length > 0 ? calls[0] : null
 
       const filter = { id: this.$router.currentRoute.params.id }
       const u = `${this.$props.data.url}${callid}?filter=${JSON.stringify(filter)}`
-      const projektyReq = await axios.get(u)
-      this.$data.projekt = projektyReq.data.length > 0 ? projektyReq.data[0] : null
+      const projekty = await this.$root.request('get', u)
+      this.$data.projekt = projekty.length > 0 ? projekty[0] : null
     } catch (err) {
     } finally {
       this.$data.loaded = true
+    }
+  },
+  computed: {
+    total: function () {
+      return this.projekt.budget.reduce((acc, i) => {
+        return acc + (i.count * i.price)
+      }, 0)
     }
   },
   methods: {

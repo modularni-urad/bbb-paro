@@ -20,7 +20,7 @@
     
     <hr />
     <kbd v-if="projekty.length === 0">zatím žádné návrhy nedorazily :(</kbd>
-    <div v-else class="grid">
+    <div v-else style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
       <ProjectCard v-for="i,idx in projekty" :key="idx" 
           :proj="i" :call="curr" />
     </div>
