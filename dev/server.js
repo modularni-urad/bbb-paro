@@ -9,8 +9,15 @@ bs.init({
   port: 8080,
   single: true,
   open: false,
-  ui: false
-})
+  ui: false,
+  middleware: [{
+    route: '/pages/',
+    handle: (req, res, next) => {
+      res.end('[]')
+      next()
+    }
+  }]
+}) 
 bs.watch(DEV_DIR + '/index.html').on('change', bs.reload)
 bs.watch(INDEX_DIR + '/**/*.js').on('change', function (filepath, file) {
   bs.reload(filepath)
