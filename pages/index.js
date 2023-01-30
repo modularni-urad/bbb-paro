@@ -17,6 +17,7 @@ export default (templates) => ({
       let currUrl = `${this.$props.data.url}?filter=${JSON.stringify(filter)}`
       const data = await this.$root.request('get', currUrl)
       this.$data.curr = data.length > 0 ? data[0] : null
+      if (!this.$data.curr) return Object.assign(this.$data, { projekty: [] })
       const ProjFilter = { 
         call_id: this.$data.curr.id,
         not: { state: 'draft' }
