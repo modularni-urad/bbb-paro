@@ -26,7 +26,7 @@ export default Object.assign(C, {
       <ul class="menu-list" v-if="loaded">
         <li v-for="i,idx in archive" :key="idx">
           <router-link :to="{name:'parocall', params: { call_id: i.id }}">
-            <h3>{{ i.name }}</h3>
+            <h5>{{ i.name }}</h5>
           </router-link>
         </li>
       </ul>

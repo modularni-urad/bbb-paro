@@ -18,7 +18,8 @@ export default {
       if (!this.curr) return Object.assign(this.$data, { projekty: [] })
 
       const ProjFilter = { 
-        not: { state: 'draft' }
+        not: { state: 'draft' },
+        call_id: callID,
       }
       const u = `${this.data.url}/${callID}?filter=${JSON.stringify(ProjFilter)}`
       this.projekty = await this.$root.request('get', u)
