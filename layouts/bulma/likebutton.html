@@ -1,8 +1,0 @@
-<div v-if="canSupport">
-  <button class="button" :disabled="!$store.state.user" @click="sendSupport">
-    {{supportbutt}}
-  </button>
-  <span v-if="!$store.state.user">
-    Pro udílení "Líbí se mi" se přihlašte
-  </span>
-</div>
