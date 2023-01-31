@@ -27,7 +27,6 @@ export default {
     edit: function (idx, item) {
       this.$data.currIdx = idx
       this.$data.item = item
-      // Object.assign(this.$data.item, item)
     },
     close: function () {
       this.$data.item = null

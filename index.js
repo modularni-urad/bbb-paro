@@ -11,12 +11,6 @@ export async function setup (routes, path, cfg, _create) {
     component: _create(IndexPage, cfg)
   })
 
-  routes.push({
-    path: `${path}:call_id`,
-    name: 'parocall',
-    component: _create(CallPage, cfg)
-  })
-
   const zadostCFG = Object.assign({}, cfg, {
     breadcrumbs: [{ link: path, title: cfg.title }],
     title: 'přidat nebo upravit projektový návrh'
@@ -25,6 +19,12 @@ export async function setup (routes, path, cfg, _create) {
     path: `${path}zadost`,
     name: 'paroform',
     component: _create(FormPage, zadostCFG)
+  })
+
+  routes.push({
+    path: `${path}:call_id`,
+    name: 'parocall',
+    component: _create(CallPage, cfg)
   })
 
   const detailCFG = Object.assign({}, cfg, {

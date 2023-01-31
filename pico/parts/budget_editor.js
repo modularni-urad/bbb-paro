@@ -34,7 +34,7 @@ export default Object.assign(C, {
     <article>
       <header>
         <a href="#" aria-label="close" class="close" @click.prevent="close()"></a>
-        updavit položku rozpočtu
+        upravit položku rozpočtu
       </header>
       <DynamicForm :cfg="formcfg" :data="item" :submit="onItemSubmit" />
     </article>

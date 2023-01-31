@@ -25,13 +25,6 @@ export default {
     formcfg: function () {
       return jsyaml.load(formcontrol)
     },
-    fc: function () {
-      return { 
-        budgeteditor: budgeteditorFN(templates),
-        position_input: positionInputFN(templates),
-        images_editor: imagesEditorFN(templates)
-      }
-    },
     canEdit: function () {
       return this.curr.status !== 'open' 
         && this.$router.currentRoute.query.d === undefined

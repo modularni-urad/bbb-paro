@@ -8,7 +8,7 @@ export default `
 
 - name: poloha
   label: poloha v mapě
-  component: position_input
+  component: PositionInput
   rules: required
   span: 2
 
@@ -28,11 +28,11 @@ export default `
   
 - name: budget
   label: rozpočet projektu, opřený o nějakou referenci (eshop, konzultace se řemeslníkem)
-  component: budgeteditor
+  component: BudgetEditor
   rules: required
 
 - name: photo
   label: obrazky
-  component: images_editor
+  component: ImagesEditor
   rules: required
 `

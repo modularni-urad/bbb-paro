@@ -1,17 +1,17 @@
 import C from '../../src/pages/form.js'
-import Budgeteditor from '../parts/budget_editor.js'
+import BudgetEditor from '../parts/budget_editor.js'
 import PositionInput from '../parts/position_input.js'
 import ImagesEditor from '../parts/images_editor.js'
 
-export default Object.assign(C, {
-  components: { Budgeteditor, PositionInput, ImagesEditor },
+const c = Object.assign(C, {
   template: `
 <div v-if="loaded">
   <kbd v-if="canEdit">
     podávat návrhy lze až od {{ curr.submission_start | date }}
   </kbd>
   <div v-else-if="this.$store.getters.userLogged">
-    <DynamicForm :cfg="formcfg" :data="projekt" :submit="submit" :extracomponents="fc">
+    <DynamicForm :cfg="formcfg" :data="projekt" :submit="submit" 
+      :extracomponents="extracomponents">
 
       <template v-slot:submitbuttons="{ hasErrors, submitting, saveDisabled, handleSubmit }">
         <div class="grid">
@@ -35,3 +35,7 @@ export default Object.assign(C, {
 </div>
   `
 })
+c.computed.extracomponents = function () {
+  return { BudgetEditor, PositionInput, ImagesEditor }
+}
+export default c

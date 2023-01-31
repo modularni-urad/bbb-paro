@@ -1,4 +1,4 @@
-import C from '../../src/parts/likebutton.js'
+import C from '../../src/parts/position_input.js'
 
 export default Object.assign(C, {
   template: `

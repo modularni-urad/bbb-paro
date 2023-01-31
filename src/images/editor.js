@@ -1,7 +1,7 @@
 import uploadFile from './uploader.js'
 const MAX_COUNT = 5
 
-export default (templates) => ({
+export default {
   data: function () {
     return {
       loading: _.map(_.range(MAX_COUNT), i => false)
@@ -39,6 +39,5 @@ export default (templates) => ({
       }    
     }
   },
-  props: ['cfg', 'value'],
-  template: templates['images_editor']
-})
+  props: ['cfg', 'value']
+}
